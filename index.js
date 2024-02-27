@@ -70,22 +70,38 @@ app.get("/callback", (req, res) => {
   })
     .then((response) => {
       if (response.status === 200) {
-        const { access_token, token_type } = response.data;
+        // const { access_token, token_type } = response.data;
 
-        axios
-          .get("https://api.spotify.com/v1/me", {
-            headers: {
-              Authorization: `${token_type} ${access_token}`,
-            },
-          })
-          .then((response) => {
-            res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`);
-          })
-          .catch((error) => {
-            res.send(error);
-          });
+        // axios
+        //   .get("https://api.spotify.com/v1/me", {
+        //     headers: {
+        //       Authorization: `${token_type} ${access_token}`,
+        //     },
+        //   })
+        //   .then((response) => {
+        //     res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`);
+        //   })
+        //   .catch((error) => {
+        //     res.send(error);
+        //   });
+
+        const { access_token, refresh_token } = response.data;
+
+        const queryParams = querystring.stringify({
+          access_token,
+          refresh_token,
+        });
+
+        // redirect to react app - refreshed page will have URL with token values as query params
+        res.redirect(`http://localhost:3000/?${queryParams}`);
+        // pass along tokens in query_params
       } else {
-        res.send(response);
+        // res.send(response);
+        res.redirect(
+          `/?${querystring.stringify({
+            error: "invalid_token",
+          })}`
+        );
       }
     })
     .catch((error) => {
