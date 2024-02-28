@@ -85,11 +85,12 @@ app.get("/callback", (req, res) => {
         //     res.send(error);
         //   });
 
-        const { access_token, refresh_token } = response.data;
+        const { access_token, refresh_token, expires_in } = response.data;
 
         const queryParams = querystring.stringify({
           access_token,
           refresh_token,
+          expires_in,
         });
 
         // redirect to react app - refreshed page will have URL with token values as query params
