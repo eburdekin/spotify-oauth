@@ -1,7 +1,7 @@
 const ArtistsGrid = ({ artists }) => (
   <>
     {artists && artists.length ? (
-      <div type="artist">
+      <ul type="artist">
         {artists.map((artist, i) => (
           <li className="grid__item" key={i}>
             <div className="grid__item__inner">
@@ -17,7 +17,7 @@ const ArtistsGrid = ({ artists }) => (
             </div>
           </li>
         ))}
-      </div>
+      </ul>
     ) : (
       <p className="empty-notice">No artists available</p>
     )}

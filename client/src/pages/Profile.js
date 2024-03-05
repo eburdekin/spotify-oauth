@@ -4,12 +4,15 @@ import {
   getCurrentUserProfile,
   getCurrentUserPlaylists,
   getTopArtists,
+  getTopTracks,
 } from "../Spotify";
+import { ArtistsGrid, TrackList } from "../components";
 
 export default function Profile() {
   const [profile, setProfile] = useState(null);
   const [playlists, setPlaylists] = useState(null);
   const [topArtists, setTopArtists] = useState(null);
+  const [topTracks, setTopTracks] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,6 +24,9 @@ export default function Profile() {
 
       const userTopArtists = await getTopArtists();
       setTopArtists(userTopArtists.data);
+
+      const userTopTracks = await getTopTracks();
+      setTopTracks(userTopTracks.data);
     };
 
     catchErrors(fetchData());
@@ -45,6 +51,24 @@ export default function Profile() {
           </p>
           {profile.images.length && profile.images[1].url && (
             <img src={profile.images[1].url} alt="Avatar" />
+          )}
+          {topArtists && (
+            <main>
+              <div title="Top artists this month" seeAllLink="/top-artists">
+                <ArtistsGrid artists={topArtists.items.slice(0, 10)} />
+              </div>
+            </main>
+          )}
+          {topArtists && topTracks && (
+            <main>
+              <div title="Top artists this month" seeAllLink="/top-artists">
+                <ArtistsGrid artists={topArtists.items.slice(0, 10)} />
+              </div>
+
+              <div title="Top tracks this month" seeAllLink="/top-tracks">
+                <TrackList tracks={topTracks.items.slice(0, 10)} />
+              </div>
+            </main>
           )}
         </div>
       )}
