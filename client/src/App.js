@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { accessToken, logout } from "./Spotify";
 import { catchErrors } from "./utils";
 import "./App.css";
-import { Login, Profile } from "./pages";
+import { Login, Profile, TopArtists } from "./pages";
 import { GlobalStyle } from "./styles";
 
 import styled from "styled-components";
@@ -61,7 +61,7 @@ function App() {
             <ScrollToTop />
             <Switch>
               <Route path="/top-artists">
-                <h1>Top Artists</h1>
+                <TopArtists />
               </Route>
               <Route path="/top-tracks">
                 <h1>Top Tracks</h1>
