@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-// import { StyledGrid } from "../styles";
+import { StyledGrid } from "../styles";
 
 const PlaylistsGrid = ({ playlists }) => {
   return (
     <>
       {playlists ? (
-        <ul>
+        <StyledGrid>
           {playlists.map((playlist, i) => (
             <li className="grid__item" key={i}>
               <Link
@@ -24,7 +24,7 @@ const PlaylistsGrid = ({ playlists }) => {
               </Link>
             </li>
           ))}
-        </ul>
+        </StyledGrid>
       ) : (
         <p className="empty-notice">No playlists available</p>
       )}

@@ -1,7 +1,9 @@
+import { StyledGrid } from "../styles";
+
 const ArtistsGrid = ({ artists }) => (
   <>
     {artists && artists.length ? (
-      <ul type="artist">
+      <StyledGrid type="artist">
         {artists.map((artist, i) => (
           <li className="grid__item" key={i}>
             <div className="grid__item__inner">
@@ -17,7 +19,7 @@ const ArtistsGrid = ({ artists }) => (
             </div>
           </li>
         ))}
-      </ul>
+      </StyledGrid>
     ) : (
       <p className="empty-notice">No artists available</p>
     )}
