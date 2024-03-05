@@ -11,11 +11,7 @@ const REDIRECT_URI = process.env.REDIRECT_URI;
 
 // app.METHOD(PATH, HANDLER);
 // first arg will always be req, second will always be res
-/**
- * Generates a random string containing numbers and letters
- * @param  {number} length The length of the string
- * @return {string} The generated string
- */
+
 const generateRandomString = (length) => {
   let text = "";
   const possible =
@@ -50,11 +46,6 @@ app.get("/login", (req, res) => {
   res.redirect(`https://accounts.spotify.com/authorize?${queryParams}`);
 });
 
-// app.get("/awesome-generator", (req, res) => {
-//   const { name, isAwesome } = req.query;
-//   res.send(`${name} is ${JSON.parse(isAwesome) ? "super" : "not"} awesome`);
-// });
-
 app.get("/callback", (req, res) => {
   const code = req.query.code || null;
 
@@ -75,21 +66,6 @@ app.get("/callback", (req, res) => {
   })
     .then((response) => {
       if (response.status === 200) {
-        // const { access_token, token_type } = response.data;
-
-        // axios
-        //   .get("https://api.spotify.com/v1/me", {
-        //     headers: {
-        //       Authorization: `${token_type} ${access_token}`,
-        //     },
-        //   })
-        //   .then((response) => {
-        //     res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`);
-        //   })
-        //   .catch((error) => {
-        //     res.send(error);
-        //   });
-
         const { access_token, refresh_token, expires_in } = response.data;
 
         const queryParams = querystring.stringify({
