@@ -40,6 +40,7 @@ const StyledTrackList = styled.ul`
   .track__item__title-group {
     display: flex;
     align-items: center;
+    text-align: left;
   }
 
   .track__item__img {
