@@ -58,6 +58,7 @@ const StyledHeader = styled.header`
     font-size: var(--fz-xxs);
     font-weight: 700;
     margin-bottom: var(--spacing-xs);
+    text-align: left;
   }
 
   h1.header__name {
@@ -65,6 +66,7 @@ const StyledHeader = styled.header`
     font-weight: 900;
     line-height: 1;
     margin: 0 0 var(--spacing-xs) 0;
+    text-align: left;
 
     @media (min-width: 768px) {
       margin: 0 0 var(--spacing-xs) -5px;
